@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Retrieval System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center; /* Center align all content */
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .files {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Document Retrieval System</h1>
+        <p>Click below to upload documents:</p>
+        <a href="{% url 'upload_document' %}" class="btn">Upload Document</a>
+    
+        <h2>Search Documents</h2>
+        <p>Click below to search documents:</p>
+        <a href="{% url 'search_document' %}" class="btn">Search Documents</a>
+
+        <h2 style="text-align: center;">Uploaded Documents</h2>
+        <div class="files" style="text-align: center;">
+            <ul style="text-align: left;">
+                {% if documents %}
+                    {% for document in documents %}
+                        <li>
+                            <a href="{% url 'document_detail' document.id %}">{{ document.title }}</a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No documents available</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
